@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="author" content="Shayaz">
-<title>Expense Tracker</title>
-<link rel="stylesheet" href="style.css">
-</head>
 <body>
 
 <div class="container">
@@ -14,44 +5,46 @@
     <h1>Expense Tracker</h1>
 
     <div class="summary">
-        <div>
+
+        <div class="card">
             <h3>Income</h3>
             <p id="income">₹0</p>
         </div>
 
-        <div>
+        <div class="card">
             <h3>Expense</h3>
             <p id="expense">₹0</p>
         </div>
 
-        <div>
+        <div class="card">
             <h3>Balance</h3>
             <p id="balance">₹0</p>
         </div>
+
     </div>
 
     <form id="transactionForm">
-        <input type="text" id="title" placeholder="Transaction Title" required>
 
-        <input type="number" id="amount" placeholder="Amount" required>
+        <input
+        type="text"
+        id="title"
+        placeholder="Transaction Name"
+        required>
+
+        <input
+        type="number"
+        id="amount"
+        placeholder="Amount"
+        required>
 
         <select id="type">
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
 
-        <button type="submit">Add Transaction</button>
+        <button>Add</button>
+
     </form>
-
-    <div class="controls">
-        <input type="text" id="search" placeholder="Search Transaction">
-
-        <select id="filter">
-            <option value="all">All</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-        </select>
-    </div>
 
     <ul id="transactionList"></ul>
 
@@ -60,4 +53,3 @@
 <script src="app.js"></script>
 
 </body>
-</html>
