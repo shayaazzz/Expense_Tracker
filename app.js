@@ -1,23 +1,21 @@
-const search =
-document.getElementById("search");
-
-search.addEventListener(
-"input",
-renderTransactions
-);
-
-let transactions =
-JSON.parse(localStorage.getItem("transactions")) || [];
-
 const form = document.getElementById("transactionForm");
 const title = document.getElementById("title");
 const amount = document.getElementById("amount");
 const type = document.getElementById("type");
+const search = document.getElementById("search");
 
-const transactionList =
-document.getElementById("transactionList");
+const income = document.getElementById("income");
+const expense = document.getElementById("expense");
+const balance = document.getElementById("balance");
+
+const transactionList = document.getElementById("transactionList");
+
+let transactions =
+JSON.parse(localStorage.getItem("transactions")) || [];
 
 form.addEventListener("submit", addTransaction);
+
+search.addEventListener("input", renderTransactions);
 
 function addTransaction(e){
 
@@ -43,21 +41,23 @@ function renderTransactions(){
 
     transactionList.innerHTML = "";
 
-    transactions
-.filter(transaction =>
-transaction.title
-.toLowerCase()
-.includes(
-search.value.toLowerCase()
-)
-)
-.forEach(transaction => {
+    const filteredTransactions = transactions.filter(transaction =>
+        transaction.title
+        .toLowerCase()
+        .includes(search.value.toLowerCase())
+    );
+
+    filteredTransactions.forEach(transaction => {
 
         const li = document.createElement("li");
 
         li.innerHTML = `
-            ${transaction.title}
-            ₹${transaction.amount}
+            <span>
+                ${transaction.title}
+                (${transaction.type})
+                ₹${transaction.amount}
+            </span>
+
             <button onclick="deleteTransaction(${transaction.id})">
                 Delete
             </button>
@@ -81,28 +81,22 @@ function deleteTransaction(id){
 
 function updateSummary(){
 
-    let income = 0;
-    let expense = 0;
+    let totalIncome = 0;
+    let totalExpense = 0;
 
     transactions.forEach(transaction => {
 
         if(transaction.type === "income"){
-            income += transaction.amount;
-        }
-        else{
-            expense += transaction.amount;
+            totalIncome += transaction.amount;
+        }else{
+            totalExpense += transaction.amount;
         }
 
     });
 
-    document.getElementById("income").textContent =
-    `₹${income}`;
-
-    document.getElementById("expense").textContent =
-    `₹${expense}`;
-
-    document.getElementById("balance").textContent =
-    `₹${income - expense}`;
+    income.textContent = `₹${totalIncome}`;
+    expense.textContent = `₹${totalExpense}`;
+    balance.textContent = `₹${totalIncome - totalExpense}`;
 }
 
 function saveData(){
@@ -112,6 +106,6 @@ function saveData(){
         JSON.stringify(transactions)
     );
 }
-
+z
 renderTransactions();
 updateSummary();

@@ -1,55 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>Expense Tracker</h1>
+        <h1>Expense Tracker</h1>
 
-    <div class="summary">
+        <div class="summary">
 
-        <div class="card">
-            <h3>Income</h3>
-            <p id="income">₹0</p>
+            <div class="card">
+                <h3>Income</h3>
+                <p id="income">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Expense</h3>
+                <p id="expense">₹0</p>
+            </div>
+
+            <div class="card">
+                <h3>Balance</h3>
+                <p id="balance">₹0</p>
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>Expense</h3>
-            <p id="expense">₹0</p>
-        </div>
+        <form id="transactionForm">
 
-        <div class="card">
-            <h3>Balance</h3>
-            <p id="balance">₹0</p>
-        </div>
+            <input
+                type="text"
+                id="title"
+                placeholder="Transaction Name"
+                required
+            >
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Amount"
+                required
+            >
+
+            <select id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+
+            <button type="submit">
+                Add Transaction
+            </button>
+
+        </form>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search Transaction"
+        >
+
+        <ul id="transactionList"></ul>
 
     </div>
 
-    <form id="transactionForm">
-
-        <input
-        type="text"
-        id="title"
-        placeholder="Transaction Name"
-        required>
-
-        <input
-        type="number"
-        id="amount"
-        placeholder="Amount"
-        required>
-
-        <select id="type">
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-        </select>
-
-        <button>Add</button>
-
-    </form>
-
-    <ul id="transactionList"></ul>
-
-</div>
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 
 </body>
+</html>
