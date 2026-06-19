@@ -1,3 +1,11 @@
+const search =
+document.getElementById("search");
+
+search.addEventListener(
+"input",
+renderTransactions
+);
+
 let transactions =
 JSON.parse(localStorage.getItem("transactions")) || [];
 
@@ -35,7 +43,15 @@ function renderTransactions(){
 
     transactionList.innerHTML = "";
 
-    transactions.forEach(transaction => {
+    transactions
+.filter(transaction =>
+transaction.title
+.toLowerCase()
+.includes(
+search.value.toLowerCase()
+)
+)
+.forEach(transaction => {
 
         const li = document.createElement("li");
 
